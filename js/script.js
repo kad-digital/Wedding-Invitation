@@ -7,6 +7,42 @@
       $('.sakura-falling').sakura();
 })(jQuery);
 
+
+/********************** RSVP Start **********************/
+// https://blog.rampatra.com/wedding-website
+$('#rsvp-form').on('submit', function (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+
+    // $('#alert-wrapper').html(alert('info', '<strong>Just a sec!</strong> We are saving your details.'));
+
+    if (($('#invite_code').val()) !== '06022022'
+        && ($('#invite_code').val()) !== '06022022') {
+        // $('#alert-wrapper').html(alert('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+    } else {
+		var url = 'https://script.google.com/macros/s/AKfycbwbO06pIS3Iv03Vx1lhDmE-ly_9SjOQB4WpTm04Rj7cJpVmRsnt3nBog-EqMx4shayD/exec';
+        $.post(url, data)
+            .done(function (data) {
+                console.log("url");
+                console.log(url);
+                console.log("rsvp form data");
+                console.log(data);
+                if (data.result === "error") {
+                    // $('#alert-wrapper').html(alert('danger', data.message));
+                } else {
+                    $('#alert-wrapper').html('');
+                    // $('#rsvp-modal').modal('show');
+                }
+            })
+            .fail(function (data) {
+                console.log(data);
+                // $('#alert-wrapper').html(alert('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+            });
+    }
+});
+
+/********************** RSVP End **********************/
+
 /**
  *
  * Despite so many new Bollywood and English song options, I prefered to use two-decade-old song, Din Shagna Da!
