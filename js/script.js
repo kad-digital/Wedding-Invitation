@@ -1,22 +1,15 @@
 /**
  * @author Vinit Shahdeo <vinitshahdeo@gmail.com>
  */
- var dd;
 (function ($) {
     "use strict";
       $('.sakura-falling').sakura();
 	  
 	  //var sheetData =  '{"rows":[["timestamp","email","name","extras","invite_code","Ucapan"],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:29 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:38:06 GMT","","mob",3,6022022,"selamat pengantin baru"]]}';
-	  var sheetData = '';
 	  var FEED_URL = 'https://script.google.com/macros/s/AKfycbxxVscc-yyFE7U6_2zu8EZU1F9c2u95vfKsFTclcfbKq2wGONv-e2LX6harhc8-Dxg/exec';
 	  $.get(FEED_URL, function (data) {
-		  sheetData = data;
-		  console.log(data);
-		
-		 var jsonData = JSON.parse(sheetData)
-	  dd=jsonData;
+	  var jsonData = JSON.parse(data);
 	  var rows = jsonData.rows;
-	  console.log(jsonData);
 	  
 	  //timestamp	email	name	extras	invite_code	Ucapan
 	  var index_timestamp = 0;
@@ -24,11 +17,10 @@
 	  var index_Ucapan=5;
 	  
 	  var html="<strong>";
-	  for (let i = 1; i < rows.length; i++) {
-		  console.log(dd.rows[i]);
-		  if(dd.rows[i][index_Ucapan] != null && dd.rows[i][index_Ucapan].length > 5){
+	  for (let i = rows.length-1; i > 0; i--) {
+		  if(rows[i][index_Ucapan] != null && rows[i][index_Ucapan].length > 0){
 			  
-			var rowOutput = dd.rows[i][index_Ucapan]  + " dari " +  dd.rows[i][index_name] +"<br>" ;
+			var rowOutput = rows[i][index_Ucapan]  + " dari " +  rows[i][index_name] +"<br>" ;
 			html += rowOutput;
 		  }
 		  
@@ -47,6 +39,7 @@
 /********************** RSVP Start **********************/
 // https://blog.rampatra.com/wedding-website
 $('#rsvp-form').on('submit', function (e) {
+	$('#btn-hantar-rsvp').prop('disabled', true);
     e.preventDefault();
     var data = $(this).serialize();
 
@@ -61,10 +54,10 @@ $('#rsvp-form').on('submit', function (e) {
 		var url = 'https://script.google.com/macros/s/AKfycbwbO06pIS3Iv03Vx1lhDmE-ly_9SjOQB4WpTm04Rj7cJpVmRsnt3nBog-EqMx4shayD/exec';
         $.post(url, data)
             .done(function (data) {
-                console.log("url");
-                console.log(url);
-                console.log("rsvp form data");
-                console.log(data);
+                // console.log("url");
+                // console.log(url);
+                // console.log("rsvp form data");
+                // console.log(data);
                 if (data.result === "error") {
                     // $('#alert-wrapper').html(alert('danger', data.message));
                 } else {
@@ -73,9 +66,10 @@ $('#rsvp-form').on('submit', function (e) {
                 }
 				
                     $('#alert-wrapper').html('Details saved');
+					location.reload();
             })
             .fail(function (data) {
-                console.log(data);
+                // console.log(data);
                 // $('#alert-wrapper').html(alert('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
 				
                 $('#alert-wrapper').html('<strong>Sorry!</strong> There is some issue with the server. ');
