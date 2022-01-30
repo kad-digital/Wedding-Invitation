@@ -5,7 +5,14 @@
     "use strict";
       $('.sakura-falling').sakura();
 	  
-	  //var sheetData =  '{"rows":[["timestamp","email","name","extras","invite_code","Ucapan"],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:29 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:38:06 GMT","","mob",3,6022022,"selamat pengantin baru"]]}';
+		loadUcapan();
+	  
+	 
+
+})(jQuery);
+
+function loadUcapan(){
+		  //var sheetData =  '{"rows":[["timestamp","email","name","extras","invite_code","Ucapan"],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:24 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:36:29 GMT","","mob",3,6022022,"wedding "],["Sun, 30 Jan 2022 00:38:06 GMT","","mob",3,6022022,"selamat pengantin baru"]]}';
 	  var FEED_URL = 'https://script.google.com/macros/s/AKfycbxxVscc-yyFE7U6_2zu8EZU1F9c2u95vfKsFTclcfbKq2wGONv-e2LX6harhc8-Dxg/exec';
 	  $.get(FEED_URL, function (data) {
 	  var jsonData = JSON.parse(data);
@@ -27,14 +34,13 @@
 		}
 		html += "</strong>";
 	  
-                $('#timelineData').html(html);
-				
+		$('#timelineData').html(html);
+		
+		$('#btn-hantar-rsvp').prop('disabled', false);
+		$('#alert-wrapper').html('');
 	  });
 	  
-	 
-
-})(jQuery);
-
+}
 
 /********************** RSVP Start **********************/
 // https://blog.rampatra.com/wedding-website
@@ -66,7 +72,10 @@ $('#rsvp-form').on('submit', function (e) {
                 }
 				
                     $('#alert-wrapper').html('Details saved');
-					location.reload();
+					// location.reload();
+					
+					$('#timelineData').html('<strong>Mengemaskini...</strong>');
+					loadUcapan();
             })
             .fail(function (data) {
                 // console.log(data);
