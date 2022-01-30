@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" >
+<!-- save to spreadsheet api <https://script.google.com/macros/s/AKfycbwbO06pIS3Iv03Vx1lhDmE-ly_9SjOQB4WpTm04Rj7cJpVmRsnt3nBog-EqMx4shayD/exec> -->
    <head>
+	  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/siwalikm/quick-form-css@2.2.2/qfc-light.css"> -->
       <link rel="shortcut icon" href="favicon.png" type="image/png"> 
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -51,6 +53,7 @@ Nur Farah Hidayu Binti Ahmad">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script&amp;display=swap">
       <link rel="stylesheet" href="./css/style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  
    </head>
    <body>
       <div class="music">
@@ -143,6 +146,49 @@ Ketibaan Pengantin: 12.30 tghari <br>
         </a>
       </div>
 	  
+	  <dir id="rsvp" class="qfc-container">
+	  
+	<br>
+<h2>Sahkan Kehadiran</h2>
+		<form id="rsvp-form" class="rsvp-form" action="" method="POST">
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="form-input-group">
+						<i class="fa fa-user"></i>
+						<input name="name" class="" placeholder="Nama Anda" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="form-input-group">
+						<i class="fa fa-users"></i>
+						<input type="number" name="extras" class="" min="0"  placeholder="Jumlah hadir" required>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<div class="form-input-group">
+						<i class="fa fa-key"></i>
+						<input type="number" name="invite_code" id="invite_code" class="" min="0" placeholder="Kod Jemputan" required>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<div class="form-input-group">
+					<i class="fa fa-envelope"></i>
+					<input type="text" name="Ucapan" class="" placeholder="Ucapan" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" id="alert-wrapper"></div>
+			</div>
+			<dir>
+			<button class="btn-fill rsvp-btn">
+				Hantar
+			</button>
+			</dir>
+		</form>
+	  </dir>
 
 	  
 
