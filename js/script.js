@@ -36,7 +36,7 @@ $('#rsvp-form').on('submit', function (e) {
                     // $('#rsvp-modal').modal('show');
                 }
 				
-                    $('#alert-wrapper').html('');
+                    $('#alert-wrapper').html('Details saved');
             })
             .fail(function (data) {
                 console.log(data);
