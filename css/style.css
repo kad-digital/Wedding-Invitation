@@ -617,4 +617,12 @@ input[type="submit"] {
 button {
     background: #674ea7;
     color: #fff;
+	width: auto;
+    height: auto;
+    background-color: #674ea7;
+    border-radius: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 8px;
+    margin-right: 8px;
 }

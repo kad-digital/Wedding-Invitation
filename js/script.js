@@ -15,6 +15,8 @@ $('#rsvp-form').on('submit', function (e) {
     var data = $(this).serialize();
 
     // $('#alert-wrapper').html(alert('info', '<strong>Just a sec!</strong> We are saving your details.'));
+	
+    $('#alert-wrapper').html('<strong>Just a sec!</strong> We are saving your details.');
 
     if (($('#invite_code').val()) !== '06022022'
         && ($('#invite_code').val()) !== '06022022') {
@@ -33,10 +35,14 @@ $('#rsvp-form').on('submit', function (e) {
                     $('#alert-wrapper').html('');
                     // $('#rsvp-modal').modal('show');
                 }
+				
+                    $('#alert-wrapper').html('');
             })
             .fail(function (data) {
                 console.log(data);
                 // $('#alert-wrapper').html(alert('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+				
+                $('#alert-wrapper').html('<strong>Sorry!</strong> There is some issue with the server. ');
             });
     }
 });
